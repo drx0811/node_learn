@@ -1,0 +1,14 @@
+## promise 自我实现；
+- promise的规范是根据promisea+
+- promise的根本作用是：实现异步编程；通过链式调用（promise的resolve会把结果返回到下一个then的成功函数中） 解决多次回调的地狱；
+- promise 状态：三种
+  - resolve，reject，pendding
+- promise 本身就是一个类，我们通过new 是创建实例；
+- promise 是一个立即执行函数，也就是说只要new，在promise的构造函数中会立即调用，不会阻塞其它顺序执行；
+- promise 状态是不可更改的，同一个then中you两个函数，一个成功 一个失败；   一旦成功就不会走 失败，一旦失败就不走成功；
+- promise **多个实例**调用then方法的时候，我们通过 发布订阅 的模式将成功和失败的方法存储起来；
+- promise的链式调用的根本原因是在每个then方法中，promise都会重新创建一个新的promise，也就是在then方法中通过递归的方式实现；
+- promise 的finally是无论如何都会执行的，如果finally返回的是一个promise，当该promise返回reject的时候，才会将该reject的原因传给catch里面，如果返回的是resolve，但是不会讲resolve的原因传给then；
+- promise-all 原理就是通过计数器来判断是否都resolve了，如果传入的数组都resolve了我们就认为 promise-all 可以执行到then了；
+- promise-race 原理是：通过for循环遍历，谁先resolve就直接下一步then，但是缺陷是即使已经有resolve了，但是还会把数组中所有的内容执行完毕；
+- 
