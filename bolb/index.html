@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<script>
+	/*点击下载*/
+	const str='<div>23323<div>weeewewewe</div></div>';
+	const blob=new Blob([str],{
+	  type:"type/html"
+	});
+	let a=document.createElement("a");
+	a.setAttribute('download','index.html');
+	a.href=URl.createObjectURL(blob);
+	a.click();
+
+  /*图片预览１*/
+	
+	let file=document.getElementById('file')
+	file.addEventListener('change',function (e) {
+	  const target=e.target.files[0];
+	  let img=document.createElement('img')
+		img.src=URL.createObjectURL(target);
+	  document.body.appendChild(img)
+		
+		
+		/*图片预览２*/
+		const file=new FileReader();
+    file.onload=function () {
+      let img=document.createElement('img')
+      img.src=file.result;
+      document.body.appendChild(img)
+    }
+    file.readAsDataURL(target);
+
+  })
+	
+	
+	
+</script>
+<body>
+前端实现点击下载
+<input id="file" type="file">
+</body>
+</html>

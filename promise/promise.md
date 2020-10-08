@@ -11,4 +11,5 @@
 - promise 的finally是无论如何都会执行的，如果finally返回的是一个promise，当该promise返回reject的时候，才会将该reject的原因传给catch里面，如果返回的是resolve，但是不会讲resolve的原因传给then；
 - promise-all 原理就是通过计数器来判断是否都resolve了，如果传入的数组都resolve了我们就认为 promise-all 可以执行到then了；
 - promise-race 原理是：通过for循环遍历，谁先resolve就直接下一步then，但是缺陷是即使已经有resolve了，但是还会把数组中所有的内容执行完毕；
+- 要中断一个promise，因为原生的promise没有中断的属性，所以我们要封装一个函数来中断，原理是一个使用promise.rece()方法，我们是一个自定义的promsie的reject了，就可以中断整个promsie了；
 - 
